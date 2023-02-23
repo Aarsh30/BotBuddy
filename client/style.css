@@ -160,15 +160,4 @@ form img {
  }
 
 
-
- #icon
- {
-  width: 30px;
-  cursor: pointer;
- }
-
- :root{
-    --primary-color: #red2fc;
-    --secondary-color: #212121;
-
- }
+ 

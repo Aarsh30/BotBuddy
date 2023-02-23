@@ -10,10 +10,10 @@ function loader(element) {
     element.textContent = ''
 
     loadInterval = setInterval(() => {
-        // Update the text content of the loading indicator
+       
         element.textContent += '.';
 
-        // If the loading indicator has reached three dots, reset it
+       
         if (element.textContent === '....') {
             element.textContent = '';
         }
@@ -32,7 +32,6 @@ function typeText(element, text) {
         }
     }, 20)
 }
-
 
 function generateUniqueId() {
     const timestamp = Date.now();
@@ -66,22 +65,14 @@ const handleSubmit = async (e) => {
     const data = new FormData(form)
 
    
-    chatContainer.innerHTML += chatStripe(false, data.get('prompt'))
-
-   
-    form.reset()
-
-   
+    chatContainer.innerHTML += chatStripe(false, data.get('prompt'))    
+    form.reset()    
     const uniqueId = generateUniqueId()
-    chatContainer.innerHTML += chatStripe(true, " ", uniqueId)
-
-   
+    chatContainer.innerHTML += chatStripe(true, " ", uniqueId)     
     chatContainer.scrollTop = chatContainer.scrollHeight;
-
-  
+   
     const messageDiv = document.getElementById(uniqueId)
-
-    
+  
     loader(messageDiv)
 
     const response = await fetch('http://localhost:5000', {
@@ -95,11 +86,11 @@ const handleSubmit = async (e) => {
     })
 
     clearInterval(loadInterval)
-    messageDiv.innerHTML = " ";
+    messageDiv.innerHTML = " "
 
     if (response.ok) {
         const data = await response.json();
-        const parsedData = data.bot.trim() // trims any trailing spaces/'\n' 
+        const parsedData = data.bot.trim()  
 
         typeText(messageDiv, parsedData)
     } else {
